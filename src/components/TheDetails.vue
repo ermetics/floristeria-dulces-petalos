@@ -10,14 +10,14 @@
         </v-col>
       </v-row>
 
-      <v-row class="justify-center align-center">
+      <v-row class="justify-center align-center mt-10">
         <v-col cols="12">
           <v-row class="justify-center align-start">
             <v-col cols="12" sm="auto">
               <FlowerItemImage />
             </v-col>
 
-            <v-col cols="12" sm="auto">
+            <v-col cols="12" sm="auto" class="bg-white rounded-xl">
               <FlowerItemDescription />
             </v-col>
           </v-row>

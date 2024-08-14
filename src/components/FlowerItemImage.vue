@@ -23,8 +23,9 @@ const dataStore = useDataStore()
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 25rem;
-  height: 25rem;
-  border-radius: 100%;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 20px;
+  margin-top: -12px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section style="width: 500px">
     <template v-if="!dataStore.flowerSelected">
       <v-skeleton-loader
         class="bg-transparent"
@@ -10,7 +10,7 @@
     </template>
 
     <template v-else>
-      <v-list lines="two" class="bg-transparent">
+      <v-list lines="two" class="bg-transparent mt-n2">
         <v-list-item title="Nombre común">
           <h3 class="custom-name text-primary">{{ dataStore.flowerSelected?.name }}</h3>
         </v-list-item>
@@ -44,7 +44,7 @@ import { useDataStore } from '@/stores/data.js'
 const dataStore = useDataStore()
 
 function setPrice(price) {
-  return `${price} €`
+  return `${String(price)?.replace('.', ',')} €`
 }
 
 function setFertilizerType(fertilizerType) {
