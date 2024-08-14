@@ -23,7 +23,7 @@
                     width="18"
                     height="18"
                     viewBox="0 0 22 22"
-                    fill="currentColor"
+                    fill="#fff"
                     class="icon icon-tabler icons-tabler-filled icon-tabler-home"
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
