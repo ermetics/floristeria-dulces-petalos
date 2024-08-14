@@ -1,62 +1,42 @@
 # floristeria-dulces-petalos
 
-## Introducción
+### Tecnologías
 
-Queremos crear una aplicación que muestre el catálogo de la floristería Dulces Pétalos.
+- Vue 3: He usado el framework de JavaScript para construir la interfaz del usuario en SPA.
+- Vite: He usado este bundler para compilar el código y servirlo en un servidor de desarrollo.
+- Vuetify: He usado esta librería de componentes para construir la interfaz de usuario.
+- Vue Router: He usado esta librería para gestionar la navegación virtualizada entre páginas.
+- Pinia: Con esta librería de Vue puedo gestionar el estado de manera globalizada pudiendo consumir las diferentes necesidades de cada vista.
+- Cypress: He usado esta herramienta para realizar los test de integración y end-to-end. --Sin terminar--
 
-- La aplicación tendrá dos vistas:
-  1. Home: listado de productos
-  2. Detalle de un producto
-- La estructura deberá ceñirse a los mockups.
-- Se implementará una SPA, donde el enrutado se hará en el código de cliente.
-- El proyecto tendrá los siguientes script para la gestión de la aplicación:
-  - start: Inicia el entorno de desarrollo
-  - build: compila para producción
-  - test: Lanza los test
+### El porqué
 
-### Listado de productos
+La idea principal es que el estado se gestione globalmente para poder facilitar la comunicación y la interacción de los datos entre los diferentes componentes de la aplicación. De esta manera se puede tener un control más preciso de los datos y de las acciones que se realizan en la aplicación. Cada vista consume el esta global y se actualiza en tiempo real, dando pie a que otras vistas y componentes puedan consumir los datos actualizados.
 
-- En esta página se visualizarán todos los productos que devuelve la petición al API.
-- Permitirá hacer un filtrado de los productos, en función del criterio de búsqueda introducido por el usuario.
-- Al seleccionar un producto, permitirá navegar al detalle de este.
-- Se mostrará un máximo de cuatro elementos por fila. Se adaptará a la resolución del dispositivo.
+La vista _home_ es la vista principal, al crearse demanda datos a través de una acción invocada directamente en el _store_ que se encarga de gestionar los datos de la aplicación. Una vez que se obtienen los datos, se actualiza el _estado global_ y se renderiza la vista con los datos obtenidos.
 
-### Detalle de producto
+Una vez que el usuario hace click en un elemento de la lista, se inyecta el _id_ del elemento en los parámetros de la ruta _/details_ de la aplicación y se redirije a la ruta de destino. En esta vista se consume el _estado global_ y se obtienen los datos del elemento seleccionado. Se renderiza la vista con los datos obtenidos.
 
-- En esta página se visualizarán los detalles de un producto
-  - Imagen del producto
-  - Descripción del producto
-- Permitirá volver atrás en la navegación
+### Instalación
 
-## Catálogo de componentes
+```bash
+npm install
+```
 
-### HEADER: Cabecera
+### Compilación y recarga en caliente para el desarrollo
 
-- Mostrará el nombre de la empresa y/o un icono, que será un enlace a la home.
-- Mostrará breadcrumbs, con links para la navegación.
+```bash
+npm run start
+```
 
-### SEARCH: Búsqueda
+### Compilación y minificación para la producción
 
-- Permitirá la introducción de una cadena de texto
-- Se filtrarán los productos del listado en función de la cadena de texto, comparando nombre y nombre científico de la planta
-- El filtrado se hará en tiempo real, a medida que el usuario introduzca la cadena de texto
+```bash
+npm run build
+```
 
-### ITEM: Elemento del listado
+### test end-to-end
 
-- Dará la siguiente información de cada producto: ○ Imagen
-  - Nombre
-  - Nombre científico ○ Precio
-
-### IMAGE: Imagen del producto
-
-- Mostrará la imagen del producto
-
-### DESCRIPTION: Descripción del producto
-
-- Mostrará detalles del producto:
-  - Nombre
-  - Nombre científico
-  - Precio
-  - Riegos por semana
-  - Fertilizante recomendado: Podrá ser “fosforado” o “nitrogenado”
-  - Altura
+```bash
+npm run test:e2e
+```
