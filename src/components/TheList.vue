@@ -12,7 +12,7 @@
             variant="outlined"
           >
             <template #clear>
-              <LogoInputClear @click="search = ''" />
+              <IconInputClear @click="search = ''" />
             </template>
           </v-text-field>
         </v-col>
@@ -58,7 +58,7 @@ import { computed, ref } from 'vue'
 import { useDataStore } from '@/stores/data.js'
 import { useRouter } from 'vue-router'
 import FlowerItem from '@/components/FlowerItemList.vue'
-import LogoInputClear from '@/components/LogoInputClear.vue'
+import IconInputClear from '@/components/IconInputClear.vue'
 
 const dataStore = useDataStore()
 const router = useRouter()
