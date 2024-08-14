@@ -79,7 +79,7 @@ const search = ref('')
 
 const filteredFlowers = computed(() => {
   return dataStore.flowers?.filter((flower) => {
-    return flower.name?.toLowerCase().includes(search.value?.toLowerCase())
+    return flower?.name?.toLowerCase()?.includes(search.value?.toLowerCase())
   })
 })
 
