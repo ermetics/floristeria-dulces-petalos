@@ -1,30 +1,30 @@
 <template>
   <v-hover>
     <template v-slot:default="{ isHovering, props }">
-      <section
+      <v-card
+        class="custom-flower bg-white rounded-lg"
+        color="white"
+        :class="isHovering ? 'elevation-4' : 'elevation-0'"
         v-bind="props"
-        class="rounded-lg custom-flower"
-        :class="isHovering ? 'elevation-8' : 'elevation-0'"
-        :style="`background-image: url(${imgUrl})`"
         @click="$emit('click')"
       >
-        <article class="d-flex flex-column justify-center align-center">
-          <span class="text-h5 text-white font-weight-bold custom-name">{{ name }}</span>
-          <span class="text-caption text-grey font-weight-bold">{{ binomialName }}</span>
-        </article>
+        <v-img height="225" :src="imgUrl" cover class="rounded-bs-circle"></v-img>
 
-        <article class="d-flex flex-column justify-end align-center">
-          <span class="mt-n5 pb-5 text-h5 text-white font-weight-bold" style="opacity: 0.7"
-            >{{ price }} €</span
-          >
-        </article>
-      </section>
+        <v-card-text class="bg-white">
+          <section class="d-flex flex-column justify-start align-start">
+            <span class="text-subtitle-1">{{ name }}</span>
+            <span class="text-caption text-grey">{{ binomialName }}</span>
+            <span class="text-h6">{{ String(price)?.replace('.', ',') }} €</span>
+          </section>
+        </v-card-text>
+      </v-card>
     </template>
   </v-hover>
 </template>
 
 <script setup>
 defineEmits(['click'])
+
 defineProps({
   name: {
     type: String,
@@ -53,28 +53,17 @@ defineProps({
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+LA:wght@100..400&display=swap');
 
 .custom-flower {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  background-color: #00000090;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-blend-mode: overlay;
-  height: '15rem';
-  max-height: '250px';
   transition: all 0.3s;
 }
 
 .custom-flower article:first-child {
-  padding: 5rem 5px;
+  padding: 1rem 5px;
 }
 
 .custom-flower:hover {
   cursor: pointer;
-  transform: scale3d(1.1, 1.1, 1);
-  background-color: #00000050;
+  transform: scale3d(1.05, 1.05, 1);
   transition: all 0.6s;
-  position: relative;
 }
 
 .custom-name {

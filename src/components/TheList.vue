@@ -33,6 +33,7 @@
             <v-col
               :id="flower.id"
               :key="flower.id"
+              class="pa-3"
               cols="12"
               lg="3"
               md="6"

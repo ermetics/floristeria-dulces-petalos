@@ -1,5 +1,5 @@
 :root {
-  --vt-c-white: #c5ebe3;
+  --vt-c-white: #e7f0e8;
   --vt-c-white-soft: #f8f8f8;
   --vt-c-white-mute: #f2f2f2;
 
@@ -60,6 +60,11 @@ body {
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
+  background-image: url('./image.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: saturation;
   transition:
     color 0.5s,
     background-color 0.5s;

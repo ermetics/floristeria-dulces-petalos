@@ -1,16 +1,16 @@
 <template>
-  <header class="mt-5 bg-secondary">
+  <header class="custom-header">
     <v-container>
       <v-row class="justify-center align-center">
         <v-col cols="12" lg="11">
           <v-row class="px-5 justify-start align-center" dense>
             <v-col cols="auto">
-              <template v-if="mobile">
-                <h2 class="custom-name" @click="onLogoClick">Floristería Dulces Pétalos</h2>
-              </template>
-              <template v-else>
-                <h1 class="custom-name" @click="onLogoClick">Floristería Dulces Pétalos</h1>
-              </template>
+              <router-link class="d-flex justify-center" style="text-decoration: none" to="/" exact>
+                <div class="mt-1"><IconHeader /></div>
+                <h1 class="custom-name" :style="{ 'font-size': headerFontSize }">
+                  Floristería Dulces Pétalos
+                </h1>
+              </router-link>
             </v-col>
 
             <v-spacer />
@@ -37,23 +37,29 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { useDataStore } from '@/stores/data.js'
 import { useDisplay } from 'vuetify'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import IconHome from '@/components/icons/IconHome.vue'
+import IconHeader from '@/components/icons/IconHeader.vue'
 
 const { mobile } = useDisplay()
 const dataStore = useDataStore()
 const route = useRoute()
-const router = useRouter()
 
-function onLogoClick() {
-  if (route.name !== 'home') router.push({ name: 'home' })
-}
+const headerFontSize = computed(() => (mobile.value ? '1.4rem' : '1.5rem'))
 </script>
 
 <style scoped>
+.custom-header {
+  background: linear-gradient(90deg, #3c7519, #488c1e, rgba(85, 163, 36, 1));
+  color: white;
+}
 .custom-name {
+  padding-left: 10px;
   font-weight: bold;
+  color: white;
+  text-decoration: none !important;
 }
 </style>
