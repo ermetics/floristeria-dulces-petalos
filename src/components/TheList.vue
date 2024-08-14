@@ -58,7 +58,7 @@ import { computed, ref } from 'vue'
 import { useDataStore } from '@/stores/data.js'
 import { useRouter } from 'vue-router'
 import FlowerItem from '@/components/FlowerItemList.vue'
-import IconInputClear from '@/components/IconInputClear.vue'
+import IconInputClear from '@/components/icons/IconInputClear.vue'
 
 const dataStore = useDataStore()
 const router = useRouter()
