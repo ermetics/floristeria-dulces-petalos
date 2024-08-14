@@ -1,0 +1,58 @@
+<template>
+  <section>
+    <template v-if="!dataStore.flowerSelected">
+      <v-skeleton-loader
+        class="bg-transparent"
+        height="25rem"
+        width="25rem"
+        :type="Array(6).fill('text').join(',')"
+      />
+    </template>
+
+    <template v-else>
+      <v-list lines="two" class="bg-transparent">
+        <v-list-item title="Nombre común">
+          <h3 class="custom-name text-primary">{{ dataStore.flowerSelected?.name }}</h3>
+        </v-list-item>
+        <v-list-item
+          title="Nombre científico"
+          :subtitle="dataStore.flowerSelected?.binomialName"
+        ></v-list-item>
+        <v-list-item
+          title="Precio"
+          :subtitle="setPrice(dataStore.flowerSelected?.price)"
+        ></v-list-item>
+        <v-list-item
+          title="Riegos por semana"
+          :subtitle="dataStore.flowerSelected?.wateringsPerWeek"
+        ></v-list-item>
+        <v-list-item
+          title="Tipo de fertilizante"
+          :subtitle="setFertilizerType(dataStore.flowerSelected?.fertilizerType)"
+        ></v-list-item>
+        <v-list-item
+          title="Altura (cm)"
+          :subtitle="dataStore.flowerSelected?.heightInCm"
+        ></v-list-item>
+      </v-list>
+    </template>
+  </section>
+</template>
+
+<script setup>
+import { useDataStore } from '@/stores/data.js'
+const dataStore = useDataStore()
+
+function setPrice(price) {
+  return `${price} €`
+}
+
+function setFertilizerType(fertilizerType) {
+  const options = {
+    nitrogen: 'Nitrogenado',
+    phosphorus: 'Fosforado'
+  }
+
+  return options?.[fertilizerType] ?? 'Desconocido'
+}
+</script>
