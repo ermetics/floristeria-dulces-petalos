@@ -36,7 +36,9 @@
 
               <template v-if="route.name !== 'home'">
                 <span class="px-3" style="margin-top: -2px">/</span>
-                <span style="margin-top: -2px">{{ route.name }}</span>
+                <span style="margin-top: -2px">{{
+                  dataStore.flowerSelected?.name ?? route.name
+                }}</span>
               </template>
             </v-col>
           </v-row>
@@ -47,10 +49,12 @@
 </template>
 
 <script setup>
+import { useDataStore } from '@/stores/data.js'
 import { useDisplay } from 'vuetify'
 import { useRoute, useRouter } from 'vue-router'
 
 const { mobile } = useDisplay()
+const dataStore = useDataStore()
 const route = useRoute()
 const router = useRouter()
 

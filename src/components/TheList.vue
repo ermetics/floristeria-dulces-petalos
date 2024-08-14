@@ -13,6 +13,7 @@
           >
             <template #clear>
               <svg
+                id="clear-input-search"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -43,7 +44,14 @@
             No existen items con el criterio de búsqueda
           </template>
           <template v-else>
-            <v-col cols="12" lg="3" md="6" v-for="flower in filteredFlowers" :key="flower.id">
+            <v-col
+              :id="flower.id"
+              :key="flower.id"
+              cols="12"
+              lg="3"
+              md="6"
+              v-for="flower in filteredFlowers"
+            >
               <FlowerItem
                 :name="flower.name"
                 :binomialName="flower.binomialName"

@@ -3,7 +3,9 @@
     <v-container>
       <v-row class="justify-end align-start">
         <v-col cols="auto">
-          <v-btn variant="outlined" @click="router.push({ name: 'home' })">Volver</v-btn>
+          <v-btn id="back-button" variant="outlined" @click="router.push({ name: 'home' })"
+            >Volver</v-btn
+          >
         </v-col>
       </v-row>
 
