@@ -20,4 +20,6 @@ app.use(vuetify)
 app.use(createPinia())
 app.use(router)
 
+router.replace('/')
+
 app.mount('#app')
