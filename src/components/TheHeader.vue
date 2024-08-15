@@ -43,7 +43,7 @@ const { mobile } = useDisplay()
 const dataStore = useDataStore()
 const route = useRoute()
 
-const headerFontSize = computed(() => (mobile.value ? '1.3rem' : '1.5rem'))
+const headerFontSize = computed(() => (mobile.value ? '1.4rem' : '1.6rem'))
 </script>
 
 <style scoped>
