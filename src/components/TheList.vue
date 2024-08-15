@@ -30,7 +30,7 @@
               class="pa-3"
               cols="12"
               lg="3"
-              md="6"
+              sm="6"
             >
               <FlowerItem
                 :name="flower.name"
