@@ -7,7 +7,13 @@
             <v-col cols="auto">
               <router-link class="d-flex justify-center" style="text-decoration: none" to="/" exact>
                 <div class="mt-1"><IconHeader /></div>
-                <h1 class="custom-name" :style="{ 'font-size': headerFontSize }">
+                <h1
+                  class="custom-name"
+                  :style="{
+                    'font-size': headerFontSize,
+                    'padding-top': headerPaddingTop
+                  }"
+                >
                   Floristería Dulces Pétalos
                 </h1>
               </router-link>
@@ -48,7 +54,8 @@ const { mobile } = useDisplay()
 const dataStore = useDataStore()
 const route = useRoute()
 
-const headerFontSize = computed(() => (mobile.value ? '1.4rem' : '1.5rem'))
+const headerFontSize = computed(() => (mobile.value ? '1.15rem' : '1.5rem'))
+const headerPaddingTop = computed(() => (mobile.value ? '5px' : '0'))
 </script>
 
 <style scoped>
