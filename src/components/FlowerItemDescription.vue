@@ -12,7 +12,7 @@
     <template v-else>
       <v-list lines="two" class="bg-transparent mt-n2">
         <v-list-item title="Nombre común">
-          <h3 class="custom-name text-primary">{{ dataStore.flowerSelected?.name }}</h3>
+          <h2 class="custom-name text-primary">{{ dataStore.flowerSelected?.name }}</h2>
         </v-list-item>
         <v-list-item
           title="Nombre científico"

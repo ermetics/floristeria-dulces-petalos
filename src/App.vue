@@ -20,10 +20,12 @@ import TheHeader from './components/TheHeader.vue'
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+LA:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Script&display=swap');
 
 .custom-name {
-  font-family: 'Playwrite DE LA', cursive;
+  font-family: 'League Script', cursive;
+  font-weight: 600;
+  font-style: normal;
   font-optical-sizing: auto;
 }
 </style>
