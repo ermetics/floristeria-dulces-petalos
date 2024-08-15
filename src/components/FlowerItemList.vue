@@ -8,7 +8,7 @@
         v-bind="props"
         @click="$emit('click')"
       >
-        <v-img height="225" :src="imgUrl" cover class="rounded-bs-circle"></v-img>
+        <v-img height="215" :src="imgUrl" cover class="rounded-bs-circle"></v-img>
 
         <v-card-text class="bg-white">
           <section class="d-flex flex-column justify-start align-start">
@@ -50,8 +50,6 @@ defineProps({
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+LA:wght@100..400&display=swap');
-
 .custom-flower {
   transition: all 0.3s;
 }
@@ -64,10 +62,5 @@ defineProps({
   cursor: pointer;
   transform: scale3d(1.05, 1.05, 1);
   transition: all 0.6s;
-}
-
-.custom-name {
-  font-family: 'Playwrite DE LA', cursive;
-  font-optical-sizing: auto;
 }
 </style>

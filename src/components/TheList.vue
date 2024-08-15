@@ -3,18 +3,11 @@
     <v-container>
       <v-row class="justify-end align-center">
         <v-col cols="12" md="6">
-          <v-text-field
-            v-model="search"
-            density="comfortable"
-            label="Búsqueda"
-            outline
-            placeholder="Orquídea, ramo novia..."
-            variant="outlined"
-          >
-            <template #clear>
-              <IconInputClear @click="search = ''" />
-            </template>
-          </v-text-field>
+          <SearchInputField
+            :modelValue="search"
+            @update:modelValue="onUpdateSearch($event)"
+            @click:clear="onClearSearch"
+          />
         </v-col>
       </v-row>
 
@@ -31,13 +24,13 @@
           </template>
           <template v-else>
             <v-col
+              v-for="flower in filteredFlowers"
               :id="flower.id"
               :key="flower.id"
               class="pa-3"
               cols="12"
               lg="3"
               md="6"
-              v-for="flower in filteredFlowers"
             >
               <FlowerItem
                 :name="flower.name"
@@ -59,7 +52,7 @@ import { computed, ref } from 'vue'
 import { useDataStore } from '@/stores/data.js'
 import { useRouter } from 'vue-router'
 import FlowerItem from '@/components/FlowerItemList.vue'
-import IconInputClear from '@/components/icons/IconInputClear.vue'
+import SearchInputField from '@/components/SearchInputField.vue'
 
 const dataStore = useDataStore()
 const router = useRouter()
@@ -67,12 +60,23 @@ const search = ref('')
 
 const filteredFlowers = computed(() => {
   return dataStore.flowers?.filter((flower) => {
-    return flower?.name?.toLowerCase()?.includes(search.value?.toLowerCase())
+    return (
+      flower?.name?.toLowerCase()?.includes(search.value?.toLowerCase()) ||
+      flower?.binomialName?.toLowerCase()?.includes(search.value?.toLowerCase())
+    )
   })
 })
 
 function handleClick(id = null) {
   if (id) router.push({ name: 'details', params: { id } })
+}
+
+function onClearSearch() {
+  search.value = ''
+}
+
+function onUpdateSearch(value) {
+  search.value = value
 }
 
 // onCreated

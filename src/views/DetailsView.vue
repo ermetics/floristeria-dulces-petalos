@@ -1,9 +1,7 @@
 <script setup>
-import TheDetails from '../components/TheDetails.vue'
+import TheDetails from '@/components/TheDetails.vue'
 </script>
 
 <template>
-  <main>
-    <TheDetails />
-  </main>
+  <TheDetails />
 </template>
