@@ -1,5 +1,9 @@
 # floristeria-dulces-petalos
 
+### Desplegada en Vercel para su visualización
+
+https://floristeria-dulces-petalos.vercel.app/
+
 ### Tecnologías
 
 - Vue 3: He usado el framework de JavaScript para construir la interfaz del usuario en SPA.
