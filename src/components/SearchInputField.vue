@@ -16,6 +16,7 @@
 
 <script setup>
 import IconInputClear from '@/components/icons/IconInputClear.vue'
+
 defineEmits(['click:clear', 'update:modelValue'])
 defineProps({ modelValue: String })
 </script>

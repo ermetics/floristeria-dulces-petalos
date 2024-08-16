@@ -13,7 +13,7 @@
 
       <v-row class="justify-center align-center">
         <template v-if="!dataStore.flowers">
-          <v-col cols="12" lg="3" md="6" v-for="(flower, index) in 8" :key="index">
+          <v-col cols="12" lg="3" md="6" v-for="item in 8" :key="item">
             <v-skeleton-loader class="bg-transparent" height="250px" type="image, text" />
           </v-col>
         </template>

@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia'
 import { useFetchAllData, useFetchDataByID } from '@/composables/fetchData.js'
+import { useHandleErrors } from '@/composables/handleErrors.js'
+
+const { captureError } = useHandleErrors()
 
 export const useDataStore = defineStore('data', {
   state: () => ({
@@ -16,7 +19,7 @@ export const useDataStore = defineStore('data', {
       const { data, error } = useFetchAllData()
 
       if (error) {
-        // Handle error here...
+        captureError(error)
       }
 
       this.flowers = data
@@ -26,7 +29,7 @@ export const useDataStore = defineStore('data', {
       const { data, error } = useFetchDataByID({ id })
 
       if (error) {
-        // Handle error here...
+        captureError(error)
       }
 
       this.flowerSelected = data

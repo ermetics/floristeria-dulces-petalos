@@ -1,6 +1,6 @@
 <template>
   <v-hover>
-    <template v-slot:default="{ isHovering, props }">
+    <template #default="{ isHovering, props }">
       <v-card
         class="custom-flower bg-white rounded-lg"
         color="white"
