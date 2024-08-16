@@ -4,7 +4,7 @@
     width="18"
     height="18"
     viewBox="0 0 22 22"
-    fill="#fff"
+    :fill="fillColor"
     class="icon icon-tabler icons-tabler-filled icon-tabler-home"
   >
     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -13,3 +13,12 @@
     />
   </svg>
 </template>
+
+<script setup>
+defineProps({
+  fillColor: {
+    type: String,
+    default: '#fff'
+  }
+})
+</script>

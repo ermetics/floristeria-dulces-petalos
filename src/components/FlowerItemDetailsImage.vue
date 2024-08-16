@@ -20,12 +20,21 @@ const dataStore = useDataStore()
 
 <style scoped>
 .custom-flower {
+  position: relative;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 15rem;
-  height: 15rem;
+  width: 18rem;
+  height: 18rem;
   border-radius: 20px;
   margin-top: -12px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.4s;
+}
+
+.custom-flower:hover {
+  transform: scale(1.2);
+  transition: all 0.8s;
+  z-index: 1;
 }
 </style>

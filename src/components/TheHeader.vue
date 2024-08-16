@@ -1,10 +1,10 @@
 <template>
-  <v-app-bar app color="teal-darken-4" image="https://picsum.photos/1920/1080?random" dark>
+  <v-app-bar color="teal-darken-4" image="https://picsum.photos/1920/1080?random" dark>
     <template #image>
       <v-img gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"></v-img>
     </template>
 
-    <v-app-bar-title>
+    <div class="pl-6 mb-n1">
       <router-link style="text-decoration: none" to="/" exact>
         <h1
           class="custom-name"
@@ -15,10 +15,10 @@
           Floristería Dulces Pétalos
         </h1>
       </router-link>
-    </v-app-bar-title>
+    </div>
 
     <template #append>
-      <div class="px-6 mb-n1 d-flex justify-end">
+      <div v-if="!xs" class="pr-6 mb-n1 d-flex justify-end">
         <router-link to="/" exact>
           <IconHome />
         </router-link>
@@ -39,11 +39,11 @@ import { useDisplay } from 'vuetify'
 import { useRoute } from 'vue-router'
 import IconHome from '@/components/icons/IconHome.vue'
 
-const { mobile } = useDisplay()
+const { mobile, xs } = useDisplay()
 const dataStore = useDataStore()
 const route = useRoute()
 
-const headerFontSize = computed(() => (mobile.value ? '1.4rem' : '1.6rem'))
+const headerFontSize = computed(() => (mobile.value ? '1.3rem' : '1.6rem'))
 </script>
 
 <style scoped>

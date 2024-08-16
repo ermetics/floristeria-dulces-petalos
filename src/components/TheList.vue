@@ -32,7 +32,7 @@
               lg="3"
               sm="6"
             >
-              <FlowerItem
+              <FlowerItemCard
                 :name="flower.name"
                 :binomialName="flower.binomialName"
                 :imgUrl="flower.imgUrl"
@@ -51,7 +51,7 @@
 import { computed, ref } from 'vue'
 import { useDataStore } from '@/stores/data.js'
 import { useRouter } from 'vue-router'
-import FlowerItem from '@/components/FlowerItemList.vue'
+import FlowerItemCard from '@/components/FlowerItemCardList.vue'
 import SearchInputField from '@/components/SearchInputField.vue'
 
 const dataStore = useDataStore()
