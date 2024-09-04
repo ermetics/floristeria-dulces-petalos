@@ -12,6 +12,7 @@ https://floristeria-dulces-petalos.vercel.app/
 - Vue Router: He usado esta librería para gestionar la navegación virtualizada entre páginas.
 - Pinia: Con esta librería de Vue puedo gestionar el estado de manera globalizada pudiendo consumir las diferentes necesidades de cada vista.
 - Cypress: He usado esta herramienta para realizar los test de integración y end-to-end. --Sin terminar--
+- Los datos de la aplicación se cargan desde un API externa.
 
 ### El porqué
 
