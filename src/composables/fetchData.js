@@ -1,5 +1,4 @@
-const withError = false;
-const BASE_URL = withError ? import.meta.VITE_API_ERROR_URL : import.meta.env.VITE_API_URL;
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export async function useFetchAllData() {
   try {
