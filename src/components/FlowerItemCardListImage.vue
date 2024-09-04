@@ -1,3 +1,12 @@
+<script setup>
+defineProps({
+  imgUrl: {
+    type: String,
+    required: true
+  }
+});
+</script>
+
 <template>
   <div class="image-container" :style="`background-image: url(${imgUrl})`">
     <svg class="image-waves-layer-b" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -16,15 +25,6 @@
     </svg>
   </div>
 </template>
-
-<script setup>
-defineProps({
-  imgUrl: {
-    type: String,
-    required: true
-  }
-})
-</script>
 
 <style scoped>
 .image-container {

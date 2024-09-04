@@ -1,22 +1,24 @@
+<script setup>
+import { useDataStore } from '@/stores/data.js';
+import IconInputClear from '@/components/icons/IconInputClear.vue';
+
+const dataStore = useDataStore();
+</script>
+
 <template>
   <v-text-field
-    :value="modelValue"
+    :clearable="!!dataStore.searchInput"
+    :disabled="dataStore.apiError?.status"
+    :value="dataStore.searchInput"
+    autofocus
     density="comfortable"
     label="Búsqueda"
-    outline
-    placeholder="Orquídea, ramo novia..."
+    placeholder="Orquídea, rosa..."
     variant="outlined"
-    @update:modelValue="$emit('update:modelValue', $event)"
+    @update:modelValue="dataStore.onUpdateSearchInput($event)"
   >
     <template #clear>
-      <IconInputClear @click="$emit('click:clear')" />
+      <IconInputClear @click="dataStore.onClearSearchInput" />
     </template>
   </v-text-field>
 </template>
-
-<script setup>
-import IconInputClear from '@/components/icons/IconInputClear.vue'
-
-defineEmits(['click:clear', 'update:modelValue'])
-defineProps({ modelValue: String })
-</script>

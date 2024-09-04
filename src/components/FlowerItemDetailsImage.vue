@@ -1,3 +1,8 @@
+<script setup>
+import { useDataStore } from '@/stores/data.js';
+const dataStore = useDataStore();
+</script>
+
 <template>
   <section>
     <template v-if="!dataStore.flowerSelected">
@@ -12,11 +17,6 @@
     </template>
   </section>
 </template>
-
-<script setup>
-import { useDataStore } from '@/stores/data.js'
-const dataStore = useDataStore()
-</script>
 
 <style scoped>
 .custom-flower {

@@ -1,30 +1,65 @@
+<script setup>
+import { useDataStore } from '@/stores/data.js';
+import { useRouter } from 'vue-router';
+
+import IconAPIError from '@/components/icons/IconAPIError.vue';
+import FlowerItemCard from '@/components/FlowerItemCardList.vue';
+import SearchInputField from '@/components/SearchInputField.vue';
+
+const dataStore = useDataStore();
+const router = useRouter();
+
+function handleClick(id = null) {
+  if (id) router.push({ name: 'details', params: { id } });
+}
+
+// onCreated
+dataStore.fetchData();
+</script>
+
 <template>
   <section class="mt-6">
     <v-container>
+      <!-- Search input -->
       <v-row class="justify-end align-center">
         <v-col cols="12" md="6">
-          <SearchInputField
-            :modelValue="search"
-            @update:modelValue="onUpdateSearch($event)"
-            @click:clear="onClearSearch"
-          />
+          <SearchInputField />
         </v-col>
       </v-row>
 
+      <!-- List of items / Alerts -->
       <v-row class="justify-center align-center">
-        <template v-if="!dataStore.flowers">
+        <!-- API with error -->
+        <template v-if="dataStore.dataLoadHaveError">
+          <v-col class="d-flex align-center justify-center bg-error pa-10 rounded-xl" cols="12">
+            <IconAPIError />
+            <span class="px-2">{{ dataStore.apiError?.message ?? '' }}</span>
+          </v-col>
+        </template>
+
+        <!-- API is loading -->
+        <template v-else-if="dataStore.dataLoadIsLoading">
           <v-col cols="12" lg="3" md="6" v-for="item in 8" :key="item">
             <v-skeleton-loader class="bg-transparent" height="250px" type="image, text" />
           </v-col>
         </template>
 
+        <!-- API is loaded and item not found -->
         <template v-else>
-          <template v-if="search && filteredFlowers.length === 0">
+          <template
+            v-if="
+              dataStore.dataLoadIsReady &&
+              dataStore.searchInput &&
+              !dataStore.filteredFlowers?.length
+            "
+          >
             No existen items con el criterio de búsqueda
           </template>
+
+          <!-- API is loaded and item found -->
           <template v-else>
             <v-col
-              v-for="flower in filteredFlowers"
+              v-for="flower in dataStore.filteredFlowers"
               :id="flower.id"
               :key="flower.id"
               class="pa-3"
@@ -46,39 +81,3 @@
     </v-container>
   </section>
 </template>
-
-<script setup>
-import { computed, ref } from 'vue'
-import { useDataStore } from '@/stores/data.js'
-import { useRouter } from 'vue-router'
-import FlowerItemCard from '@/components/FlowerItemCardList.vue'
-import SearchInputField from '@/components/SearchInputField.vue'
-
-const dataStore = useDataStore()
-const router = useRouter()
-const search = ref('')
-
-const filteredFlowers = computed(() => {
-  return dataStore.flowers?.filter((flower) => {
-    return (
-      flower?.name?.toLowerCase()?.includes(search.value?.toLowerCase()) ||
-      flower?.binomialName?.toLowerCase()?.includes(search.value?.toLowerCase())
-    )
-  })
-})
-
-function handleClick(id = null) {
-  if (id) router.push({ name: 'details', params: { id } })
-}
-
-function onClearSearch() {
-  search.value = ''
-}
-
-function onUpdateSearch(value) {
-  search.value = value
-}
-
-// onCreated
-dataStore.fetchData()
-</script>

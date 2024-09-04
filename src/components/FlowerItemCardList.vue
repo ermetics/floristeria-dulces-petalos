@@ -1,3 +1,36 @@
+<script setup>
+import FlowerItemImage from '@/components/FlowerItemCardListImage.vue';
+
+defineEmits(['click']);
+
+defineProps({
+  name: {
+    type: String,
+    required: true,
+    default: 'Nombre común'
+  },
+  binomialName: {
+    type: String,
+    required: true,
+    default: 'Nombre científico'
+  },
+  imgUrl: {
+    type: String,
+    required: true,
+    default: 'https://cdn.vuetifyjs.com/docs/images/cards/purple-flowers.jpg'
+  },
+  price: {
+    type: Number,
+    required: false,
+    default: 0
+  }
+});
+
+function setPrice(price) {
+  return String(price)?.replace('.', ',') + ' €';
+}
+</script>
+
 <template>
   <v-hover>
     <template #default="{ isHovering, props }">
@@ -21,39 +54,6 @@
     </template>
   </v-hover>
 </template>
-
-<script setup>
-import FlowerItemImage from '@/components/FlowerItemCardListImage.vue'
-
-defineEmits(['click'])
-
-defineProps({
-  name: {
-    type: String,
-    required: true,
-    default: 'Nombre común'
-  },
-  binomialName: {
-    type: String,
-    required: true,
-    default: 'Nombre científico'
-  },
-  imgUrl: {
-    type: String,
-    required: true,
-    default: 'https://cdn.vuetifyjs.com/docs/images/cards/purple-flowers.jpg'
-  },
-  price: {
-    type: Number,
-    required: false,
-    default: 0
-  }
-})
-
-function setPrice(price) {
-  return String(price)?.replace('.', ',') + ' €'
-}
-</script>
 
 <style scoped>
 .custom-flower {

@@ -1,25 +1,24 @@
-import { ref } from 'vue'
+const withError = false;
+const BASE_URL = withError ? import.meta.VITE_API_ERROR_URL : import.meta.env.VITE_API_URL;
 
-export function useFetchAllData() {
-  const data = ref(null)
-  const error = ref(null)
+export async function useFetchAllData() {
+  try {
+    const response = await fetch(BASE_URL);
+    const data = await response.json();
 
-  fetch(import.meta.env.VITE_API_URL)
-    .then((res) => res.json())
-    .then((json) => (data.value = json))
-    .catch((err) => (error.value = err))
-
-  return { data, error }
+    return { data, error: null };
+  } catch {
+    return { data: null, error: 'Error al cargar los datos del API' };
+  }
 }
 
-export function useFetchDataByID({ id }) {
-  const data = ref(null)
-  const error = ref(null)
+export async function useFetchDataByID({ id }) {
+  try {
+    const response = await fetch(`${BASE_URL}/${id}`);
+    const data = await response.json();
 
-  fetch(`${import.meta.env.VITE_API_URL}/${id}`)
-    .then((res) => res.json())
-    .then((json) => (data.value = json))
-    .catch((err) => (error.value = err))
-
-  return { data, error }
+    return { data, error: null };
+  } catch (error) {
+    return { data: null, error: 'Error al cargar los datos del API' };
+  }
 }

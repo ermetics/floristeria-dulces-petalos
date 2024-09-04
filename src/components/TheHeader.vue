@@ -1,3 +1,18 @@
+<script setup>
+import { computed } from 'vue';
+import { useDataStore } from '@/stores/data.js';
+import { useDisplay } from 'vuetify';
+import { useRoute } from 'vue-router';
+
+import IconHome from '@/components/icons/IconHome.vue';
+
+const { mobile, xs } = useDisplay();
+const dataStore = useDataStore();
+const route = useRoute();
+
+const headerFontSize = computed(() => (mobile.value ? '1.3rem' : '1.6rem'));
+</script>
+
 <template>
   <v-app-bar color="teal-darken-4" image="https://picsum.photos/1920/1080?random" dark>
     <template #image>
@@ -31,20 +46,6 @@
     </template>
   </v-app-bar>
 </template>
-
-<script setup>
-import { computed } from 'vue'
-import { useDataStore } from '@/stores/data.js'
-import { useDisplay } from 'vuetify'
-import { useRoute } from 'vue-router'
-import IconHome from '@/components/icons/IconHome.vue'
-
-const { mobile, xs } = useDisplay()
-const dataStore = useDataStore()
-const route = useRoute()
-
-const headerFontSize = computed(() => (mobile.value ? '1.3rem' : '1.6rem'))
-</script>
 
 <style scoped>
 .custom-name {

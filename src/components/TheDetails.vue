@@ -1,3 +1,22 @@
+<script setup>
+import { useDataStore } from '@/stores/data.js';
+import { useDisplay } from 'vuetify';
+import { useRoute, useRouter } from 'vue-router';
+
+import FlowerItemDescription from '@/components/FlowerItemDetailsDescription.vue';
+import FlowerItemImage from '@/components/FlowerItemDetailsImage.vue';
+import IconBackButton from '@/components/icons/IconBackButton.vue';
+import IconHome from '@/components/icons/IconHome.vue';
+
+const { xs } = useDisplay();
+const dataStore = useDataStore();
+const route = useRoute();
+const router = useRouter();
+
+// onCreated
+dataStore.fetchDataByID(route.params?.id);
+</script>
+
 <template>
   <section class="mt-10" style="overflow-x: hidden">
     <v-container>
@@ -45,21 +64,3 @@
     </v-container>
   </section>
 </template>
-
-<script setup>
-import { useDataStore } from '@/stores/data.js'
-import { useDisplay } from 'vuetify'
-import { useRoute, useRouter } from 'vue-router'
-import FlowerItemDescription from '@/components/FlowerItemDetailsDescription.vue'
-import FlowerItemImage from '@/components/FlowerItemDetailsImage.vue'
-import IconBackButton from '@/components/icons/IconBackButton.vue'
-import IconHome from '@/components/icons/IconHome.vue'
-
-const { xs } = useDisplay()
-const dataStore = useDataStore()
-const route = useRoute()
-const router = useRouter()
-
-// onCreated
-dataStore.fetchDataByID(route.params?.id)
-</script>

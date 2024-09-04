@@ -1,38 +1,78 @@
-import { defineStore } from 'pinia'
-import { useFetchAllData, useFetchDataByID } from '@/composables/fetchData.js'
-import { useHandleErrors } from '@/composables/handleErrors.js'
+import { defineStore } from 'pinia';
+import { useFetchAllData, useFetchDataByID } from '@/composables/fetchData.js';
+import { useHandleErrors } from '@/composables/handleErrors.js';
 
-const { captureError } = useHandleErrors()
+const { captureError } = useHandleErrors();
 
 export const useDataStore = defineStore('data', {
   state: () => ({
-    flowers: null,
-    flowerSelected: null
+    apiError: {
+      status: false,
+      message: ''
+    },
+    flowers: [],
+    flowerSelected: null,
+    searchInput: ''
   }),
 
   getters: {
-    dataFiltered: ({ search }) => this.flowers?.filter((item) => item.name.includes(search))
+    dataLoadHaveError: (state) => state.apiError.status,
+    dataLoadIsLoading: (state) => !state.apiError.status && !state.flowers?.length,
+    dataLoadIsReady: (state) => !state.apiError.status && state.flowers?.length,
+
+    filteredFlowers: (state) => {
+      return state.flowers?.filter((flower) => {
+        return (
+          flower?.name?.toLowerCase()?.includes(state.searchInput?.toLowerCase()) ||
+          flower?.binomialName?.toLowerCase()?.includes(state.searchInput?.toLowerCase())
+        );
+      });
+    }
   },
 
   actions: {
-    fetchData() {
-      const { data, error } = useFetchAllData()
+    async fetchData() {
+      const { data, error } = await useFetchAllData();
 
       if (error) {
-        captureError(error)
+        this.apiError.status = true;
+        this.apiError.message = error;
+
+        captureError(error);
+        this.flowers = [];
+        return;
       }
 
-      this.flowers = data
+      this.flowers = [...data];
+      return;
     },
 
-    fetchDataByID(id) {
-      const { data, error } = useFetchDataByID({ id })
+    async fetchDataByID(id) {
+      const { data, error } = await useFetchDataByID({ id });
 
       if (error) {
-        captureError(error)
+        this.apiError.status = true;
+        this.apiError.message = error;
+
+        captureError(error);
+        this.flowerSelected = null;
+        return;
       }
 
-      this.flowerSelected = data
+      this.flowerSelected = { ...data };
+      return;
+    },
+
+    onClearSearchInput() {
+      this.searchInput = '';
+    },
+
+    onUpdateSearchInput(value) {
+      this.searchInput = value;
+    },
+
+    resetSelectedFlower() {
+      this.flowerSelected = null;
     }
   }
-})
+});

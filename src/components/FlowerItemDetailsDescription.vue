@@ -1,3 +1,21 @@
+<script setup>
+import { useDataStore } from '@/stores/data.js';
+const dataStore = useDataStore();
+
+function setPrice(price) {
+  return `${String(price)?.replace('.', ',')} €`;
+}
+
+function setFertilizerType(fertilizerType) {
+  const options = {
+    nitrogen: 'Nitrogenado',
+    phosphorus: 'Fosforado'
+  };
+
+  return options?.[fertilizerType] ?? 'Desconocido';
+}
+</script>
+
 <template>
   <section style="width: 500px">
     <template v-if="!dataStore.flowerSelected">
@@ -38,21 +56,3 @@
     </template>
   </section>
 </template>
-
-<script setup>
-import { useDataStore } from '@/stores/data.js'
-const dataStore = useDataStore()
-
-function setPrice(price) {
-  return `${String(price)?.replace('.', ',')} €`
-}
-
-function setFertilizerType(fertilizerType) {
-  const options = {
-    nitrogen: 'Nitrogenado',
-    phosphorus: 'Fosforado'
-  }
-
-  return options?.[fertilizerType] ?? 'Desconocido'
-}
-</script>

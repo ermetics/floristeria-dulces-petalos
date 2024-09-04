@@ -15,15 +15,15 @@
 </template>
 
 <script setup>
-import { RouterView } from 'vue-router'
-import TheHeader from './components/TheHeader.vue'
+import { RouterView } from 'vue-router';
+import TheHeader from './components/TheHeader.vue';
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=League+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 .custom-name {
-  font-family: 'League Script', cursive;
+  font-family: 'Pacifico', cursive;
   font-weight: 600;
   font-style: normal;
   font-optical-sizing: auto;

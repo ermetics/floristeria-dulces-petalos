@@ -20,5 +20,5 @@ defineProps({
     type: String,
     default: '#fff'
   }
-})
+});
 </script>
