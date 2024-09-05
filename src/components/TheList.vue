@@ -1,9 +1,11 @@
 <script setup>
+import { computed } from 'vue';
 import { useDataStore } from '@/stores/data.js';
 import { useRouter } from 'vue-router';
 
-import IconAPIError from '@/components/icons/IconAPIError.vue';
 import FlowerItemCard from '@/components/FlowerItemCardList.vue';
+import IconAPIError from '@/components/icons/IconAPIError.vue';
+import IconItemNotFound from './icons/IconItemNotFound.vue';
 import SearchInputField from '@/components/SearchInputField.vue';
 
 const dataStore = useDataStore();
@@ -13,6 +15,10 @@ function handleClick(id = null) {
   if (id) router.push({ name: 'details', params: { id } });
 }
 
+const dataLoadedItemNotFound = computed(() => {
+  return dataStore.dataLoadIsReady && dataStore.searchInput && !dataStore.filteredFlowers?.length;
+});
+
 // onCreated
 dataStore.fetchData();
 </script>
@@ -20,18 +26,20 @@ dataStore.fetchData();
 <template>
   <section class="mt-6">
     <v-container>
-      <!-- Search input -->
       <v-row class="justify-end align-center">
         <v-col cols="12" md="6">
           <SearchInputField />
         </v-col>
       </v-row>
 
-      <!-- List of items / Alerts -->
       <v-row class="justify-center align-center">
         <!-- API with error -->
         <template v-if="dataStore.dataLoadHaveError">
-          <v-col class="d-flex align-center justify-center bg-error pa-10 rounded-xl" cols="12">
+          <v-col
+            class="d-flex align-center justify-center bg-error pa-10 rounded-xl"
+            cols="12"
+            lg="9"
+          >
             <IconAPIError />
             <span class="px-2">{{ dataStore.apiError?.message ?? '' }}</span>
           </v-col>
@@ -46,14 +54,15 @@ dataStore.fetchData();
 
         <!-- API is loaded and item not found -->
         <template v-else>
-          <template
-            v-if="
-              dataStore.dataLoadIsReady &&
-              dataStore.searchInput &&
-              !dataStore.filteredFlowers?.length
-            "
-          >
-            No existen items con el criterio de búsqueda
+          <template v-if="dataLoadedItemNotFound">
+            <v-col
+              class="d-flex align-center justify-center bg-warning pa-10 rounded-xl"
+              cols="12"
+              lg="9"
+            >
+              <IconItemNotFound />
+              <span class="px-2">No existen items con ese criterio de búsqueda</span>
+            </v-col>
           </template>
 
           <!-- API is loaded and item found -->
